@@ -13,6 +13,4 @@ print("======================================")
 # for adhan in adhans:
 #     print("{: <15} | {: <15}".format(adhan.get_en_name(), adhan.readable_timing(show_date=False)))
     
-print( [{adhan.get_en_name() : adhan.readable_timing(show_date=False)} for adhan in adhans])
-
-    
+print( [{adhan.get_ar_name() : adhan.readable_timing(show_date=False)} for adhan in adhans])
