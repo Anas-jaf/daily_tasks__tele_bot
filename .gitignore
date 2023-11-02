@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 chess_progress_code/secret_variables.py
 chess_progress_code/test_folder
+api.py
+daily_diary.docx
+code_for_the_tasks/daily_dairy/daily_diary.docx
