@@ -21,7 +21,7 @@ def resize_image(img):
         else:
             new_height = MAX_SIZE
             new_width = int(width * (MAX_SIZE / height))
-            img = img.resize((new_width, new_height), resample=Image.BILINEAR)        
+            img = img.resize((new_width, new_height), resample=Image.BILINEAR)
     return img
 
 def insert_image_to_docx(image_file, file_path):
@@ -35,7 +35,7 @@ def insert_image_to_docx(image_file, file_path):
         img = Image.open(image_buffer)
         
         # Resize the image using the resize_image function
-        img = resize_image(img)         
+        img = resize_image(img)
 
         # Add the resized image to the DOCX file
         img_bytes = BytesIO()
@@ -44,7 +44,7 @@ def insert_image_to_docx(image_file, file_path):
         
         p = doc.add_paragraph()
         run = p.add_run()
-        run.add_picture(img)
+        run.add_picture(img_bytes)
         # Align the paragraph to the right
         p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 

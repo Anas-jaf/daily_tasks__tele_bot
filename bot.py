@@ -6,46 +6,24 @@ from api import *
 import os
 
 # Create a state for conversation
+MAX_WIDTH = 800
+MAX_HEIGHT = 800
+
+def resize_image(image, max_width, max_height):
+    width, height = image.size
+    if width > max_width or height > max_height:
+        image.thumbnail((max_width, max_height))
+    return image
 
 def process_image(update, context):
-    # user_id = update.message.from_user.id
-    # user_name = update.message.from_user.username
+    user_id = update.message.from_user.id
+    user_name = update.message.from_user.username
 
     image = update.message.photo[-1]
     image_file = image.get_file()
 
-    # # Create a new PIL Image from the image byte stream
-    # with BytesIO() as image_buffer:
-    #     image_file.download(out=image_buffer)
-    #     image_buffer.seek(0)
-    #     img = Image.open(image_buffer)
-        
-    #     # Resize the image using the resize_image function
-    #     img = resize_image(img)         
-
-    #     # Create a new DOCX document
-    #     doc = Document()
-
-    #     # Add the resized image to the DOCX file
-    #     img_bytes = BytesIO()
-    #     img.save(img_bytes, format='JPEG')
-    #     p = doc.add_paragraph()
-    #     run = p.add_run()
-    #     run.add_picture(img)
-    #     # Align the paragraph to the right
-    #     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-
-    #     doc.add_paragraph(style='LO-normal' )
-        
-    #     # doc.add_picture(img_bytes)
-        
-    #     # Save the DOCX document with a unique filename
-    #     docx_filename = f"image_docx_{update.message.message_id}.docx"
-    #     doc.save(docx_filename)
-    #     update.message.reply_text("Image received and saved in a DOCX file.")
-
     insert_image_to_docx(image_file , './daily_diary.docx')
-    
+    update.message.reply_text("Image received and saved in a DOCX file.")
 
 def start(update, context):
     update.message.reply_text("Send me a text, and I will save it to a file.")
