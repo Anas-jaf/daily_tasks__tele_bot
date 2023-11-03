@@ -5,10 +5,16 @@ from docx.shared import Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from datetime import datetime
 from PIL import Image
+import argparse
 
 # ضع المتغيرات العالمية هنا 
 existing_docx_file = './daily_diary.docx'  # يجب ان اغير مكان الملف و اجعل الكود يتعرف على مكانه تلقائيا
 MAX_SIZE = 350
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--date", action="store_true", help="add date heading")
+parser.add_argument("-f", "--file", help="Path to the file")
+args = parser.parse_args()
 
 # ضع الكود الجديد هنا  في البداية
 
@@ -98,7 +104,13 @@ def add_date_to_existing_doc(existing_docx_file ):
     add_content_to_existing_docx(existing_docx_file , arabic_date ,style='LO-heading')
 
 if __name__ == "__main__":
-    # existing_docx_file = './daily_diary.docx'
-    get_the_current_time()
-    # add_date_to_existing_doc('./daily_diary.docx')
-    insert_image_to_docx('./image.png', './daily_diary.docx')
+
+    # Access the value of the argument
+    if args.date and args.file :
+        add_date_to_existing_doc(args.file)
+        
+    # # existing_docx_file = './daily_diary.docx'
+    # get_the_current_time()
+    # # add_date_to_existing_doc('./daily_diary.docx')
+    # insert_image_to_docx('./image.png', './daily_diary.docx')
+    
