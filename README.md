@@ -5,7 +5,7 @@ telegram bot for daily tasks that you set up by yourself
 
 ```
 chmod +x add_cron_job.sh
-dir= "$(pwd)"
+dir=$(pwd)
 (crontab -l ; echo "0 0 * * * $dir/add_cron_job.sh") | crontab -
 ```
 
